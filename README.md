@@ -1,4 +1,4 @@
 pysuperfaktura
 ==============
 
-Puthon API for superfaktura.sk
+Python API for superfaktura.sk
