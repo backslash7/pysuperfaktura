@@ -9,7 +9,7 @@ Inštalácia
 
 Vytvorenie faktúry
 ------------------
-
+    ```python
     from pysuperfaktura import client, invoice, SFClient
 
     api_client = SFClient.SFClient('jar-jar@binks.net', 'meesahungry') // Použite svoj SF login a API key
@@ -49,3 +49,4 @@ Vytvorenie faktúry
     client = client.Client(client_params)
     item = invoice.SFInvoiceItem(item_params)
     invoice = invoice.SFInvoice(client,invoice_params,[item])
+    ```
