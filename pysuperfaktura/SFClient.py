@@ -23,11 +23,11 @@ class SFClient:
             for item in invoice.items:
                 data['InvoiceItem'].append(item.params)
             url = "".join([self.sfapi_base_url, self.create_invoice_url])
-            req = requests.post(url, data={'data':json.dumps(data)}, headers=self.auth_header)
+            req = requests.post(url, data={'data': json.dumps(data)}, headers=self.auth_header)
             if req.status_code == requests.codes.ok:
                 return json.loads(req.text)
             else:
-                raise SFAPIException('Creating invoice failed! Status code: ' + req.status_code)
+                raise SFAPIException('Creating invoice failed! Status code: %d' % req.status_code)
         else:
             raise SFAPIException('Passed invoice is not SFInvoice instance!')
 
@@ -39,4 +39,4 @@ class SFClient:
             if handle.read(4) != '%PDF':
                 raise SFAPIException('Returned document does not look like PDF file')
         else:
-            raise SFAPIException('PDF retrieval failed! Status code: ' + req.status_code)
+            raise SFAPIException('PDF retrieval failed! Status code: %d' % req.status_code)
