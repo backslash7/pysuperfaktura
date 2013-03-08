@@ -1,9 +1,12 @@
 __author__ = 'backslash7 <lukas.stana@it-admin.sk>'
 
 import json
-import requests
 from StringIO import StringIO
+
+import requests
+
 from exceptions import SFAPIException
+
 from invoice import SFInvoice
 
 
@@ -11,6 +14,7 @@ class SFClient:
     sfapi_base_url = 'https://www.superfaktura.sk'
     getpdf_url = '/invoices/pdf/'
     create_invoice_url = '/invoices/create/'
+    list_invoices_url = '/invoices/index.json'
 
     def __init__(self, email, apikey):
         self.email = email
@@ -40,3 +44,17 @@ class SFClient:
                 raise SFAPIException('Returned document does not look like PDF file')
         else:
             raise SFAPIException('PDF retrieval failed! Status code: %d' % req.status_code)
+
+    def list_invoices(self, params=None):
+        filter_url = []
+        if params:
+            for (k, v) in params.items():
+                filter_url.append("".join(['/', k, ':', v]))
+
+        url = "".join([self.sfapi_base_url, self.list_invoices_url, "".join(filter_url) if filter_url else ""])
+        req = requests.get(url, headers=self.auth_header)
+        if req.status_code != requests.codes.ok:
+            raise SFAPIException('Listing invoices failed! Status code: %s' % req.status_code)
+
+        response = json.loads(req.text)
+        return response
