@@ -11,7 +11,7 @@ from invoice import SFInvoice
 
 
 class SFClient:
-    sfapi_base_url = 'https://www.superfaktura.sk'
+    sfapi_base_url = 'https://moja.superfaktura.sk'
     getpdf_url = '/invoices/pdf/'
     create_invoice_url = '/invoices/create/'
     list_invoices_url = '/invoices/index.json'
