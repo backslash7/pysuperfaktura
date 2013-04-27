@@ -6,7 +6,7 @@ LOGIN = 'lukas.stana@it-admin.sk'
 APIKEY = 'c99f792ffaebe15d0d392075b288df9e'
 
 
-class GetPDFTest(unittest.TestCase):
+class ListTest(unittest.TestCase):
     def setUp(self):
         self.client = SFClient(LOGIN, APIKEY)
 
