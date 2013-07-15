@@ -4,7 +4,14 @@ from exceptions import SFAPIException
 
 
 class SFInvoiceItem:
+    """
+
+    """
+
     def __init__(self, params):
+        """
+
+        """
         self.params = params
 
 
@@ -15,10 +22,18 @@ class SFInvoice:
         self.items = items
 
     def add_item(self, item):
+        """
+        @param item:SFInvoiceItem instance
+        """
         if not isinstance(SFInvoiceItem, item):
-            raise SFAPIException('Passed object is not SFInvoiceItem instance')
+            raise SFAPIException('Passed object is not a SFInvoiceItem instance')
+
+        if self.items:
+            self.items.append(item)
         else:
-            if self.items:
-                self.items.append(item)
-            else:
-                self.items = [item]
+            self.items = [item]
+
+
+class SFInvoiceClient:
+    def __init__(self, params):
+        self.params = params
