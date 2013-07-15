@@ -5,14 +5,15 @@ Python API connector pre projekt superfaktura.sk
 
 Inštalácia
 ----------
-    python setup.py install
+    pip install https://github.com/backslash7/pysuperfaktura/archive/master.zip
 
 Vytvorenie faktúry
 ------------------
 ```python
-from pysuperfaktura import client, invoice, SFClient
+from pysuperfaktura.SFClient import SFClient
+from pysuperfaktura.invoice import SFInvoiceClient, SFInvoice, SFInvoiceItem,
 
-api_client = SFClient.SFClient('jar-jar@binks.net', 'meesahungry') // Použite svoj SF login a API key
+api_client = SFClient('jar-jar@binks.net', 'meesahungry') // Použite svoj SF login a API key
 client_params = {
     'name': 'Janko Hrasko',
     'ico': '12345678',
@@ -46,7 +47,8 @@ item_params = {
     'unit_price': 40.83,
     'tax': 20
 }
-client = client.Client(client_params)
-item = invoice.SFInvoiceItem(item_params)
-invoice = invoice.SFInvoice(client,invoice_params,[item])
+client = SFInvoiceClient(client_params)
+item = SFInvoiceItem(item_params)
+invoice = SFInvoice(client,invoice_params,[item])
+client.create_invoice(invoice)
 ```
