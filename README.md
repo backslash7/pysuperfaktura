@@ -13,7 +13,7 @@ Vytvorenie faktúry
 from pysuperfaktura.SFClient import SFClient
 from pysuperfaktura.invoice import SFInvoiceClient, SFInvoice, SFInvoiceItem,
 
-api_client = SFClient('jar-jar@binks.net', 'meesahungry') // Použite svoj SF login a API key
+api_client = SFClient('jar-jar@binks.net', 'meesahungry') # Použite svoj SF login a API key
 client_params = {
     'name': 'Janko Hrasko',
     'ico': '12345678',
