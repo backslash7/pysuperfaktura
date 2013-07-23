@@ -50,5 +50,5 @@ item_params = {
 client = SFInvoiceClient(client_params)
 item = SFInvoiceItem(item_params)
 invoice = SFInvoice(client,invoice_params,[item])
-client.create_invoice(invoice)
+api_client.create_invoice(invoice)
 ```
